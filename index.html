@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EthioEdu - Modern Education for Ethiopia</title>
+    <link rel="stylesheet" href="styei.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <!-- Navbar -->
+    <header>
+        <nav class="navbar" id="navbar">
+            <div class="logo">
+                <h1>EthioEdu</h1>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="#courses" class="nav-link">Courses</a></li>
+                <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+                <li class="nav-item"><button class="login-btn" onclick="toggleModal()">Login</button></li>
+            </ul>
+        </nav>
+    </header>
+<!-- Home Section -->
+<section class="home" id="home">
+    <div class="hero-content">
+        <h2>Empowering Ethiopian Students with <br><span class="typewriter"></span></h2>
+        <p class="hero-subtitle">Access advanced courses, learn at your own pace, and unlock your potential with EthioEdu.</p>
+        <button class="cta-btn" onclick="scrollToSection('courses')">Explore Courses</button>
+    </div>
+    <div class="hero-overlay"></div>
+    <canvas id="heroCanvas" class="hero-canvas"></canvas>
+</section>
+<!-- About Section -->
+<section class="about" id="about">
+    <div class="about-container">
+        <div class="about-content">
+            <h3>About EthioEdu</h3>
+            <p class="about-subtitle">Transforming Education in Ethiopia</p>
+            <p class="about-description">
+                EthioEdu is a modern online platform designed to empower Ethiopian students with high-quality, 
+                advanced educational resources. Our mission is to bridge the gap in education by providing 
+                accessible, affordable, and engaging courses for students at all levels. Whether you're a 
+                freshman or a graduate, EthioEdu offers courses in Computer Science, Software Engineering, 
+                Natural Sciences, and Social Sciences to help you achieve your academic and career goals.
+            </p>
+            <button class="cta-btn" onclick="scrollToSection('courses')">Explore Courses</button>
+        </div>
+        <div class="about-image">
+            <img src="ethio.webp" alt="About EthioEdu" loading="lazy">
+        </div>
+    </div>
+</section>
+
+<!-- Courses Section -->
+<section class="courses" id="courses">
+    <h3>Featured Courses</h3>
+    <div class="course-filter">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="cs">Computer Science</button>
+        <button class="filter-btn" data-filter="se">Software Engineering</button>
+        <button class="filter-btn" data-filter="ns">Natural Science</button>
+        <button class="filter-btn" data-filter="ss">Social Science</button>
+    </div>
+    <div class="course-container">
+        <div class="course-card" data-category="cs">
+            <div class="course-img-container">
+                <img loading="lazy" src="cs.jpg" alt="Computer Science" class="course-img">
+                <div class="course-overlay">
+                    <p>Learn programming, algorithms, and data structures.</p>
+                </div>
+            </div>
+            <h4>Computer Science</h4>
+            <button class="course-btn" onclick="enrollCourse('Computer Science')">Enroll Now</button>
+        </div>
+        <div class="course-card" data-category="se">
+            <div class="course-img-container">
+                <img loading="lazy" src="se.jpg" alt="Software Engineering" class="course-img">
+                <div class="course-overlay">
+                    <p>Master software development and system design.</p>
+                </div>
+            </div>
+            <h4>Software Engineering</h4>
+            <button class="course-btn" onclick="enrollCourse('Software Engineering')">Enroll Now</button>
+        </div>
+        <div class="course-card" data-category="ns">
+            <div class="course-img-container">
+                <img loading="lazy" src="ns.jpg" alt="Natural Science" class="course-img">
+                <div class="course-overlay">
+                    <p>Explore physics, maths, psychology, and anthrophology.</p>
+                </div>
+            </div>
+            <h4>Natural Science</h4>
+            <button class="course-btn" onclick="enrollCourse('Natural Science')">Enroll Now</button>
+        </div>
+        <div class="course-card" data-category="ss">
+            <div class="course-img-container">
+                <img loading="lazy" src="ss.jpg" alt="Social Science" class="course-img">
+                <div class="course-overlay">
+                    <p>Understand economics, sociology, and history.</p>
+                </div>
+            </div>
+            <h4>Social Science</h4>
+            <button class="course-btn" onclick="enrollCourse('Social Science')">Enroll Now</button>
+        </div>
+    </div>
+</section>
+<!-- Login Modal -->
+<div class="modal" id="loginModal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="toggleModal()">&times;</span>
+        <h3>Login to EthioEdu</h3>
+        <form id="loginForm" onsubmit="handleLogin(event)">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password" required>
+            </div>
+            <button type="submit" class="login-btn">Login</button>
+        </form>
+        <p class="signup-text">Don't have an account? <a href="#" onclick="toggleModal('signupModal')">Sign Up</a></p>
+    </div>
+</div>
+
+<!-- Signup Modal (Optional) -->
+<div class="modal" id="signupModal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="toggleModal('signupModal')">&times;</span>
+        <h3>Sign Up for EthioEdu</h3>
+        <form id="signupForm" onsubmit="handleSignup(event)">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" placeholder="Enter your full name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password" required>
+            </div>
+            <button type="submit" class="signup-btn">Sign Up</button>
+        </form>
+        <p class="login-text">Already have an account? <a href="#" onclick="toggleModal('loginModal')">Login</a></p>
+    </div>
+</div>
+    <!-- Contact Section -->
+<section class="contact" id="contact">
+    <div class="contact-container">
+        <div class="contact-info">
+            <h3>Contact Us</h3>
+            <p class="contact-subtitle">We'd love to hear from you!</p>
+            <p class="contact-description">
+                Have questions or feedback? Reach out to us, and our team will get back to you as soon as possible.
+            </p>
+            <div class="contact-details">
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p>Addis Ababa, Ethiopia</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <p><a href="mailto:info@ethioedu.com">info@ethioedu.com</a></p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <p><a href="tel:+251123456789">+251904174741</a></p>
+                </div>
+            </div>
+            <div class="social-links">
+                <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        <div class="contact-form">
+            <form id="contactForm" onsubmit="handleContactForm(event)">
+                <input type="text" id="name" placeholder="Your Name" required>
+                <input type="email" id="email" placeholder="Your Email" required>
+                <textarea id="message" placeholder="Your Message" rows="5" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+    <!-- Footer -->
+<footer id="contact">
+    <div class="footer-content">
+        <div class="footer-section">
+            <h4>EthioEdu</h4>
+            <p>Empowering the next generation of Ethiopian innovators.</p>
+            <div class="social-links">
+                <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        <div class="footer-section">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="#home" class="footer-link">Home</a></li>
+                <li><a href="#courses" class="footer-link">Courses</a></li>
+                <li><a href="#about" class="footer-link">About</a></li>
+                <li><a href="#contact" class="footer-link">Contact</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h4>Contact Us</h4>
+            <p>Email: <a href="mailto:info@ethioedu.com" class="footer-link">info@ethioedu.com</a></p>
+            <p>Phone: <a href="tel:+251123456789" class="footer-link">+251904174741</a></p>
+        </div>
+    </div>
+    <p class="footer-bottom">© 2025 EthioEdu. All rights reserved.</p>
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+</footer>
+    <!-- Script -->
+    <script src="script.js"></script>
+</body>
+</html>
